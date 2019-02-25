@@ -1,4 +1,4 @@
-package com.hoversoftsoln.esta_fort.profile;
+package com.hoversoftsoln.estafortdriver.profile;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -9,13 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.hoversoftsoln.esta_fort.R;
-import com.hoversoftsoln.esta_fort.core.BaseActivity;
-import com.hoversoftsoln.esta_fort.data.EstaUser;
+import com.hoversoftsoln.estafortdriver.R;
+import com.hoversoftsoln.estafortdriver.core.BaseActivity;
+import com.hoversoftsoln.estafortdriver.core.data.Driver;
+import com.hoversoftsoln.estafortdriver.core.data.EstaUser;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -96,7 +96,7 @@ public class ProfileActivity extends BaseActivity {
         });
 
         this.saveProfile.setOnClickListener(v -> {
-            EstaUser estaUser = new EstaUser();
+            Driver estaUser = new Driver();
             estaUser.setEmail(etEmail.getText().toString());
             estaUser.setUsername(etUsername.getText().toString());
             estaUser.setLocation(etLocation.getText().toString());

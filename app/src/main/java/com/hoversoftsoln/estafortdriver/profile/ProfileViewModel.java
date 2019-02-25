@@ -1,4 +1,4 @@
-package com.hoversoftsoln.esta_fort.profile;
+package com.hoversoftsoln.estafortdriver.profile;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -13,34 +13,35 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.SetOptions;
-import com.hoversoftsoln.esta_fort.data.EstaUser;
+import com.hoversoftsoln.estafortdriver.core.data.Driver;
+import com.hoversoftsoln.estafortdriver.core.data.EstaUser;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class ProfileViewModel extends ViewModel {
 
-    private MutableLiveData<EstaUser> estaUser;
+    private MutableLiveData<Driver> estadriver;
     private MutableLiveData<Boolean> loadingService;
 
-    private DocumentReference userRefence;
+    private DocumentReference driverReference;
     private ListenerRegistration userDocListenerReg;
 
     public ProfileViewModel() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        this.userRefence = db.collection("Users").document(uid);
+        this.driverReference = db.collection("Drivers").document(uid);
     }
 
-    public LiveData<EstaUser> getUserAccount() {
-        if (estaUser == null) {
-            estaUser = new MutableLiveData<>();
+    public LiveData<Driver> getUserAccount() {
+        if (estadriver == null) {
+            estadriver = new MutableLiveData<>();
             if (loadingService == null) {
                 loadingService = new MutableLiveData<>();
             }
             loadEstaUser();
         }
-        return estaUser;
+        return estadriver;
     }
 
     public LiveData<Boolean> loadingService() {
@@ -52,12 +53,12 @@ public class ProfileViewModel extends ViewModel {
 
     private void loadEstaUser() {
         this.loadingService.postValue(true);
-        this.userDocListenerReg = this.userRefence.addSnapshotListener((documentSnapshot, e) -> {
+        this.userDocListenerReg = this.driverReference.addSnapshotListener((documentSnapshot, e) -> {
             this.loadingService.postValue(false);
             if (documentSnapshot != null) {
-                EstaUser user= documentSnapshot.toObject(EstaUser.class);
-                if (user != null) {
-                    this.estaUser.postValue(user);
+                Driver driver= documentSnapshot.toObject(Driver.class);
+                if (driver != null) {
+                    this.estadriver.postValue(driver);
                 }
             }
         });
@@ -69,17 +70,17 @@ public class ProfileViewModel extends ViewModel {
         this.userDocListenerReg.remove();
     }
 
-    void updateUserAccount(EstaUser estaUser) {
+    void updateUserAccount(Driver driver) {
         this.loadingService.postValue(true);
         Map<String, Object> datamap = new HashMap<>();
-        datamap.put("username", estaUser.getUsername());
-        datamap.put("email", estaUser.getEmail());
-        datamap.put("telephone", estaUser.getTelephone());
-        datamap.put("location", estaUser.getLocation());
-        userRefence.set(datamap, SetOptions.merge()).addOnCompleteListener(task -> {
+        datamap.put("username", driver.getUsername());
+        datamap.put("email", driver.getEmail());
+        datamap.put("telephone", driver.getTelephone());
+        datamap.put("location", driver.getLocation());
+        driverReference.set(datamap, SetOptions.merge()).addOnCompleteListener(task -> {
             this.loadingService.postValue(false);
             if (task.isSuccessful()){
-                this.estaUser.postValue(estaUser);
+                this.estadriver.postValue(driver);
             }
         });
     }
