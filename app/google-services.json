@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "560419373519",
+    "firebase_url": "https://esta-fort.firebaseio.com",
+    "project_id": "esta-fort",
+    "storage_bucket": "esta-fort.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560419373519:android:366d72473394f948",
+        "android_client_info": {
+          "package_name": "com.hoversoftsoln.esta_fort"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560419373519-7eosb24g58ls128tpm28qaop9p3n57ue.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hoversoftsoln.esta_fort",
+            "certificate_hash": "885c3e07c8dd8ffbb98ee3ebefba8e72f425cf3b"
+          }
+        },
+        {
+          "client_id": "560419373519-c4tj2tpg34roqlq1ur07gv54ch09jnm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDybM0cqcHttw8nfucApyL3CHYp_KqX95M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560419373519-c4tj2tpg34roqlq1ur07gv54ch09jnm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560419373519:android:6676a57705c1af4c",
+        "android_client_info": {
+          "package_name": "com.hoversoftsoln.estafortdriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "560419373519-h157qh9mmpg7vpnd6plpc8slq5fhor97.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hoversoftsoln.estafortdriver",
+            "certificate_hash": "885c3e07c8dd8ffbb98ee3ebefba8e72f425cf3b"
+          }
+        },
+        {
+          "client_id": "560419373519-c4tj2tpg34roqlq1ur07gv54ch09jnm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDybM0cqcHttw8nfucApyL3CHYp_KqX95M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "560419373519-c4tj2tpg34roqlq1ur07gv54ch09jnm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
