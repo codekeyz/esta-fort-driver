@@ -1,4 +1,4 @@
-package com.hoversoftsoln.esta_fort.core.data
+package com.hoversoftsoln.estafortdriver.core.data
 
 import com.google.firebase.firestore.PropertyName
 
@@ -13,6 +13,8 @@ data class Driver(
         @set:PropertyName("telephone") var telephone: String = "",
         @get:PropertyName("status")
         @set:PropertyName("status") var status: Int = 0,
+        @get:PropertyName("location")
+        @set:PropertyName("location") var location: String = "",
         @get:PropertyName("image")
         @set:PropertyName("image") var image: String = "",
         @get:PropertyName("rating")

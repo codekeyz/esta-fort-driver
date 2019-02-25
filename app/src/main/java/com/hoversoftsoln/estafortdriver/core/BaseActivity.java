@@ -40,6 +40,6 @@ public abstract class BaseActivity extends AppCompatActivity implements OnComple
     protected void sendTokentoServer(String userID, String token) {
         Map<String, Object> datamap = new HashMap<>();
         datamap.put("token", token);
-        FirebaseFirestore.getInstance().document("Users/" + userID).set(datamap, SetOptions.merge());
+        FirebaseFirestore.getInstance().document("Drivers/" + userID).set(datamap, SetOptions.merge());
     }
 }
