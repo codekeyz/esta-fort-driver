@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        app:logo="@drawable/ic_directions_car_white_24dp"
         android:theme="@style/AppTheme"
         app:popupTheme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:title="@string/your_requests"
@@ -32,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/white"
-            tools:listitem="@layout/item_driver" />
+            tools:listitem="@layout/item_request" />
 
     </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -7,10 +7,8 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -18,9 +16,9 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.hoversoftsoln.estafortdriver.MainActivity;
 import com.hoversoftsoln.estafortdriver.R;
 import com.hoversoftsoln.estafortdriver.core.BaseActivity;
+import com.hoversoftsoln.estafortdriver.request.RequestsActivity;
 
 import java.util.Arrays;
 
@@ -126,7 +124,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private void startHome() {
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intent = new Intent(getApplicationContext(), RequestsActivity.class);
         startActivity(intent);
         finish();
     }
