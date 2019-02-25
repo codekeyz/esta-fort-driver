@@ -1,0 +1,21 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.hoversoftsoln.esta_fort.home.HomeActivity">
+
+
+    <item android:id="@+id/menu_rides"
+        android:title="@string/action_rides" />
+
+
+    <item
+        android:id="@+id/menu_profile"
+        android:title="@string/action_profile" />
+
+
+    <item
+        android:id="@+id/menu_sign_out"
+        android:title="@string/sign_out" />
+
+
+
+</menu>
