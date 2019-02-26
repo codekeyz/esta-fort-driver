@@ -17,6 +17,14 @@
     <string name="hint_enter_email">Email</string>
     <string name="hint_enter_telephone">Telephone</string>
     <string name="hint_enter_location">Location</string>
+    <string name="check">Check</string>
+
+    <string-array name="statustoggle">
+        <item>Confirm</item>
+        <item>Start Trip</item>
+        <item>Finish Trip</item>
+        <item>Cancel Trip</item>
+    </string-array>
 
 
 </resources>
