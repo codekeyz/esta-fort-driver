@@ -1,11 +1,21 @@
 package com.hoversoftsoln.estafortdriver.request;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.curioustechizen.ago.RelativeTimeTextView;
 import com.hoversoftsoln.estafortdriver.core.data.Request;
@@ -20,14 +30,21 @@ import butterknife.ButterKnife;
 public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestViewHolder> {
 
     private List<Request> requestList;
+    private Activity context;
+    private OnRequestClickListener onRequestClickListener;
 
-    public RequestAdapter() {
+    public RequestAdapter(Activity context) {
+        this.context = context;
         this.requestList = new ArrayList<>();
     }
 
     public void setRequestList(List<Request> requestList) {
         this.requestList = requestList;
         notifyDataSetChanged();
+    }
+
+    public void setOnRequestClickListener(OnRequestClickListener onRequestClickListener) {
+        this.onRequestClickListener = onRequestClickListener;
     }
 
     @NonNull
@@ -47,6 +64,10 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         return requestList.size();
     }
 
+    public interface OnRequestClickListener {
+        void onclickRequest(Request request);
+    }
+
     class RequestViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.request_time)
@@ -58,17 +79,35 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         @BindView(R.id.driverName)
         TextView driverName;
 
+        @BindView(R.id.call)
+        ImageView callbtn;
+
+        private View view;
+
         RequestViewHolder(@NonNull View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
+            this.view = itemView;
+            ButterKnife.bind(this, this.view);
         }
 
         void bind(Request request) {
             timePlaced.setReferenceTime(request.getDateCreated());
             status.setText(getStatus(request.getStatus()));
             driverName.setText(request.getDriverName());
+
+            view.setOnClickListener(v -> {
+                if (onRequestClickListener != null) {
+                    onRequestClickListener.onclickRequest(request);
+                }
+            });
+
+            callbtn.setOnClickListener(v -> launchDialer(request.getUserTelephone()));
         }
 
+        void launchDialer(String telephone) {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + telephone));
+            context.startActivity(intent);
+        }
 
         String getStatus(int status) {
             String result = "";
