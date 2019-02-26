@@ -160,6 +160,62 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            tools:visibility="visible"
+            android:visibility="gone"
+            android:id="@+id/layoutTwoTwoTT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:paddingStart="25dp"
+            android:paddingEnd="20dp"
+            android:layout_marginTop="25dp">
+
+            <com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch
+                android:id="@+id/pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="10dp"
+                app:base_release_color="@color/colorPrimaryDark"
+                app:base_press_color="@color/colorAccent"
+
+                />
+
+            <LinearLayout
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/restaurant_item_category"
+                    android:layout_width="wrap_content"
+                    style="@style/AppTheme.Subheader"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/greySecondary"
+                    android:text="@string/status" />
+
+                <TextView
+                    android:id="@+id/restaurant_item_city_divider"
+                    style="@style/AppTheme.TextDivider"
+                    android:text="@string/divider_bullet" />
+
+                <TextView
+                    android:id="@+id/status"
+                    style="@style/AppTheme.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/greyPrimary"
+                    tools:text="Online" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/saveProfile"
             android:textColor="#fff"
