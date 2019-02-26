@@ -63,6 +63,7 @@ public class ProfileActivity extends BaseActivity implements CompoundButton.OnCh
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         statusSwitch.setOnCheckedChangeListener(this);
+        statusLayout.setOnClickListener(v -> onCheckedChanged(null, !statusSwitch.isChecked()));
 
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
