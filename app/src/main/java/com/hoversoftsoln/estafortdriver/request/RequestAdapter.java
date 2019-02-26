@@ -22,6 +22,7 @@ import com.hoversoftsoln.estafortdriver.core.data.Request;
 import com.hoversoftsoln.estafortdriver.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,6 +41,15 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
 
     public void setRequestList(List<Request> requestList) {
         this.requestList = requestList;
+        Collections.sort(this.requestList, (o1, o2) -> {
+            if (o1.getStatus() > o2.getStatus()){
+                return 1;
+            }
+            if (o1.getStatus() < o2.getStatus()) {
+                return -1;
+            }
+            return 0;
+        });
         notifyDataSetChanged();
     }
 
@@ -101,7 +111,14 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                 }
             });
 
-            callbtn.setOnClickListener(v -> launchDialer(request.getUserTelephone()));
+            callbtn.setOnClickListener(v -> {
+                if (request.getIscompleted() || request.getIscancelled()){
+                    Toast.makeText(context, "You can't place a call to User right now.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                launchDialer(request.getUserTelephone());
+            });
         }
 
         void launchDialer(String telephone) {

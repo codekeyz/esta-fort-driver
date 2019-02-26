@@ -125,6 +125,9 @@ public class RequestsActivity extends BaseActivity {
         AppCompatSpinner spinner = view.findViewById(R.id.spinner);
         spinner.setAdapter(new ArrayAdapter<>(RequestsActivity.this, android.R.layout.simple_list_item_1, statuses));
 
+        if (dialog1 != null){
+            dialog1 = null;
+        }
         dialog1 = new AlertDialog.Builder(RequestsActivity.this)
                 .setTitle("Update Request Status")
                 .setView(view)
