@@ -4,6 +4,15 @@ apply plugin: 'com.google.gms.google-services'
 apply plugin: 'kotlin-kapt'
 
 android {
+
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def newApkName = applicationId + "-" + variant.versionName + ".apk"
+            outputFileName = new File(variant.name, newApkName)
+        }
+    }
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.hoversoftsoln.estafortdriver"

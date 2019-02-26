@@ -83,7 +83,7 @@ public class SplashActivity extends BaseActivity {
     }
 
     private boolean shouldStartSignIn() {
-        return ( !splashViewModel.IsSigningIn() && user == null);
+        return ( FirebaseAuth.getInstance().getCurrentUser() == null);
     }
 
     @Override
