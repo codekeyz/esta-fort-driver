@@ -87,7 +87,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         TextView status;
 
         @BindView(R.id.driverName)
-        TextView driverName;
+        TextView userName;
 
         @BindView(R.id.call)
         ImageView callbtn;
@@ -103,7 +103,7 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
         void bind(Request request) {
             timePlaced.setReferenceTime(request.getDateCreated());
             status.setText(getStatus(request.getStatus()));
-            driverName.setText(request.getDriverName());
+            userName.setText(request.getUserName());
 
             view.setOnClickListener(v -> {
                 if (onRequestClickListener != null) {
