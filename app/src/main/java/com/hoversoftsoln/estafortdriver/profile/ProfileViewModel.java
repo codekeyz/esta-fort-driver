@@ -3,18 +3,13 @@ package com.hoversoftsoln.estafortdriver.profile;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.SetOptions;
 import com.hoversoftsoln.estafortdriver.core.data.Driver;
-import com.hoversoftsoln.estafortdriver.core.data.EstaUser;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -82,6 +77,15 @@ public class ProfileViewModel extends ViewModel {
             if (task.isSuccessful()){
                 this.estadriver.postValue(driver);
             }
+        });
+    }
+
+    void setStatus(int status) {
+        this.loadingService.postValue(true);
+        Map<String, Object> datamap = new HashMap<>();
+        datamap.put("status", status);
+        driverReference.set(datamap, SetOptions.merge()).addOnCompleteListener(task -> {
+            this.loadingService.postValue(false);
         });
     }
 }

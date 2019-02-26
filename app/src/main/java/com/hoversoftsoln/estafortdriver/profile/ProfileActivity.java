@@ -9,7 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 import com.google.firebase.auth.FirebaseAuth;
 import com.hoversoftsoln.estafortdriver.R;
 import com.hoversoftsoln.estafortdriver.core.BaseActivity;
@@ -21,7 +23,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
-public class ProfileActivity extends BaseActivity {
+public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwitch.OnCheckedChangeListener {
 
     @BindView(R.id.etTelephone)
     EditText etTelephone;
@@ -31,6 +33,10 @@ public class ProfileActivity extends BaseActivity {
     EditText etEmail;
     @BindView(R.id.etLocation)
     EditText etLocation;
+    @BindView(R.id.status)
+    TextView status;
+    @BindView(R.id.pin)
+    MaterialAnimatedSwitch statusSwitch;
     @BindView(R.id.saveProfile)
     Button saveProfile;
     @BindView(R.id.toolbar)
@@ -39,6 +45,9 @@ public class ProfileActivity extends BaseActivity {
 
     @BindView(R.id.editLayout)
     LinearLayout editLayout;
+
+    @BindView(R.id.layoutTwoTwoTT)
+    LinearLayout statusLayout;
 
     @BindView(R.id.loading)
     MaterialProgressBar loader;
@@ -54,6 +63,8 @@ public class ProfileActivity extends BaseActivity {
         getSupportActionBar().setTitle("Profile");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        statusSwitch.setOnCheckedChangeListener(this);
+
         profileViewModel = ViewModelProviders.of(this).get(ProfileViewModel.class);
 
         profileViewModel.loadingService().observe(this, loading -> {
@@ -66,6 +77,23 @@ public class ProfileActivity extends BaseActivity {
 
         profileViewModel.getUserAccount().observe(this, user -> {
             if (user != null) {
+
+                if (!isEmpty(user)) {
+                    this.statusLayout.setVisibility(View.VISIBLE);
+                }else {
+                    this.statusLayout.setVisibility(View.GONE);
+                }
+
+                if (user.getStatus() == 0) {
+                    if (statusSwitch.isChecked()){
+                        statusSwitch.toggle();
+                    }
+                }else {
+                    if (!statusSwitch.isChecked()){
+                        statusSwitch.toggle();
+                    }
+                }
+
                 this.editLayout.setVisibility(View.VISIBLE);
                 if (user.getUsername().trim().isEmpty()){
                     if (mFirebaseAuth.getCurrentUser() != null && mFirebaseAuth.getCurrentUser().getDisplayName() != null){
@@ -92,6 +120,8 @@ public class ProfileActivity extends BaseActivity {
                 }
 
                 this.etLocation.setText(user.getLocation());
+            } else {
+                statusLayout.setVisibility(View.GONE);
             }
         });
 
@@ -112,5 +142,20 @@ public class ProfileActivity extends BaseActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCheckedChanged(boolean b) {
+        int status = b ? 1 : 0;
+        this.profileViewModel.setStatus(status);
+    }
+
+    private boolean isEmpty(Driver estaDriver) {
+        if (estaDriver == null) {
+            return true;
+        } else return estaDriver.getUsername().trim().isEmpty() ||
+                estaDriver.getEmail().trim().isEmpty() ||
+                estaDriver.getTelephone().trim().isEmpty() ||
+                estaDriver.getLocation().trim().isEmpty();
     }
 }
