@@ -67,6 +67,14 @@
           }
         },
         {
+          "client_id": "560419373519-75ddbh37hhcm2tih8vq3ack4vgjiinhe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hoversoftsoln.estafortdriver",
+            "certificate_hash": "084fde7707136175e53fbf6b37a0cf5adca1658c"
+          }
+        },
+        {
           "client_id": "560419373519-c4tj2tpg34roqlq1ur07gv54ch09jnm1.apps.googleusercontent.com",
           "client_type": 3
         }
