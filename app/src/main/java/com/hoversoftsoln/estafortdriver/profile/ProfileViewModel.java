@@ -72,6 +72,7 @@ public class ProfileViewModel extends ViewModel {
         datamap.put("email", driver.getEmail());
         datamap.put("telephone", driver.getTelephone());
         datamap.put("location", driver.getLocation());
+        datamap.put("image", "https://png.pngtree.com/element_our/png/20180921/a-young-boy-riding-an-orange-delivery-scooter-png_105782.jpg");
         driverReference.set(datamap, SetOptions.merge()).addOnCompleteListener(task -> {
             this.loadingService.postValue(false);
             if (task.isSuccessful()){

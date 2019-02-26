@@ -16,7 +16,7 @@ data class Driver(
         @get:PropertyName("location")
         @set:PropertyName("location") var location: String = "",
         @get:PropertyName("image")
-        @set:PropertyName("image") var image: String = "https://png.pngtree.com/element_our/png/20180921/a-young-boy-riding-an-orange-delivery-scooter-png_105782.jpg",
+        @set:PropertyName("image") var image: String = "",
         @get:PropertyName("rating")
         @set:PropertyName("rating") var rating: Int = 0,
         @set:PropertyName("token")
