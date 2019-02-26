@@ -3,27 +3,26 @@ package com.hoversoftsoln.estafortdriver.profile;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.SwitchCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.github.glomadrian.materialanimatedswitch.MaterialAnimatedSwitch;
 import com.google.firebase.auth.FirebaseAuth;
 import com.hoversoftsoln.estafortdriver.R;
 import com.hoversoftsoln.estafortdriver.core.BaseActivity;
 import com.hoversoftsoln.estafortdriver.core.data.Driver;
-import com.hoversoftsoln.estafortdriver.core.data.EstaUser;
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
-public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwitch.OnCheckedChangeListener {
+public class ProfileActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
     @BindView(R.id.etTelephone)
     EditText etTelephone;
@@ -36,7 +35,7 @@ public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwi
     @BindView(R.id.status)
     TextView status;
     @BindView(R.id.pin)
-    MaterialAnimatedSwitch statusSwitch;
+    SwitchCompat statusSwitch;
     @BindView(R.id.saveProfile)
     Button saveProfile;
     @BindView(R.id.toolbar)
@@ -84,15 +83,8 @@ public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwi
                     this.statusLayout.setVisibility(View.GONE);
                 }
 
-                if (user.getStatus() == 0) {
-                    if (statusSwitch.isChecked()){
-                        statusSwitch.toggle();
-                    }
-                }else {
-                    if (!statusSwitch.isChecked()){
-                        statusSwitch.toggle();
-                    }
-                }
+                statusSwitch.setChecked(user.getStatus() == 1);
+                status.setText(user.getStatus() == 1 ? "Online" : "Offline");
 
                 this.editLayout.setVisibility(View.VISIBLE);
                 if (user.getUsername().trim().isEmpty()){
@@ -144,12 +136,6 @@ public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwi
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onCheckedChanged(boolean b) {
-        int status = b ? 1 : 0;
-        this.profileViewModel.setStatus(status);
-    }
-
     private boolean isEmpty(Driver estaDriver) {
         if (estaDriver == null) {
             return true;
@@ -157,5 +143,11 @@ public class ProfileActivity extends BaseActivity implements MaterialAnimatedSwi
                 estaDriver.getEmail().trim().isEmpty() ||
                 estaDriver.getTelephone().trim().isEmpty() ||
                 estaDriver.getLocation().trim().isEmpty();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        int status = isChecked ? 1 : 0;
+        this.profileViewModel.setStatus(status);
     }
 }
