@@ -139,11 +139,13 @@ public class RequestAdapter extends RecyclerView.Adapter<RequestAdapter.RequestV
                     result = "Confirmed";
                     break;
                 case 2:
-                    result = "In Progress";
+                    result = "You have Arrived";
                     break;
                 case 3:
-                    result = "Completed";
+                    result = "In Progress";
                     break;
+                case 4:
+                    result = "Completed";
             }
             return result;
         }

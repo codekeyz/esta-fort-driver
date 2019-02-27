@@ -85,7 +85,7 @@ public class RequestsViewModel extends ViewModel {
     void updateRequest(String id, int status) {
         Map<String, Object> data  = new HashMap<>();
         data.put("status", status);
-        if (status == 3){
+        if (status == 4){
             data.put("is_completed", true);
         }
         if (status == -1){
