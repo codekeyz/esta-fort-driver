@@ -21,8 +21,9 @@
 
     <string-array name="statustoggle">
         <item>Confirm</item>
-        <item>Start Trip</item>
-        <item>Finish Trip</item>
+        <item>Arrived</item>
+        <item>Start</item>
+        <item>Completed Trip</item>
         <item>Cancel Trip</item>
     </string-array>
 
